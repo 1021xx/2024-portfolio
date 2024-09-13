@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>1021 - 3D Artwork</title>
+  <link rel="stylesheet" href="https://use.typekit.net/nyc6jda.css">
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #1F2029;
+      color: white;
+      overscroll-behavior: none;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    #wrapper {
+      overflow: hidden;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    #content {
+      overflow: visible;
+      width: 100%;
+    }
+
+    .text {
+      position: fixed;
+      top: 50vh;
+      font-family: termina, sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      font-size: 8vw;
+      text-align: center;
+      width: 100%;
+      transform: translateY(-100%);
+      z-index: 2;
+      color: white;
+      -webkit-text-stroke-width: 1.5px;
+      -webkit-text-stroke-color: white;
+      z-index: -2;
+    }
+
+    .outline-text {
+      color: transparent;
+      -webkit-text-stroke-width: 1.5px;
+      -webkit-text-stroke-color: white;
+      z-index: 2;
+      cursor: default;
+
+    }
+
+    .filter-text {
+      mix-blend-mode: screen;
+      color: #804691;
+      z-index: 2;
+      cursor: default;
+    }
+
+    .images {
+      padding-top: 60vh;
+      position: relative;
+      width: 100%;
+      /* max-width: 1200px; */
+      margin: 0 auto;
+      min-height: 150vh;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(20, 2%);
+      grid-template-rows: repeat(30, 3%);
+      justify-content: center;
+      justify-items: center;
+      align-items: center;
+      z-index: 1;
+      object-fit: cover;
+    }
+
+    .content__slide-item {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    img:nth-child(1) {
+      grid-area: 1/1/6/8;
+    }
+
+    img:nth-child(2) {
+      grid-area: 3/12/8/20;
+    }
+
+    img:nth-child(3) {
+      grid-area: 9/5/13/15;
+    }
+
+    img:nth-child(4) {
+      grid-area: 14/1/18/8;
+    }
+
+    img:nth-child(5) {
+      grid-area: 16/12/20/19;
+    }
+
+    img:nth-child(6) {
+      grid-area: 20/2/25/9;
+    }
+
+    img:nth-child(7) {
+      grid-area: 22/11/24/20;
+    }
+
+    img:nth-child(8) {
+      grid-area: 26/5/30/15;
+    }
+
+    img:nth-child(9) {
+      grid-area: 40/12/31/19;
+    }
+
+    /* 팝업 스타일 */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 10;
+    }
+
+    .popup-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup-image {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    window.console = window.console || function (t) {};
+  </script>
+</head>
+
+<body translate="no">
+  <h1 class="text">3D Artwork</h1>
+  <h1 aria-hidden="true" class="text outline-text">3D Artwork</h1>
+  <h1 aria-hidden="true" class="text filter-text">3D Artwork</h1>
+
+  <div id="wrapper">
+    <section id="content">
+      <section class="images">
+        <img data-speed="0.8" src="./3d_img/04.png" alt="">
+        <img data-speed="0.9" src="./3d_img/07.png" alt="">
+        <img data-speed="1" src="./3d_img/08-4 1.png" alt="">
+        <img data-speed="1.1" src="./3d_img/08.png" alt="">
+        <img data-speed="0.9" src="./3d_img/13_canBox_01.png" alt="">
+        <!-- <img data-speed="1.2" src="./3d_img/" alt=""> -->
+        <!-- <img data-speed="0.8" src="" alt=""> -->
+        <!-- <img data-speed=" 1" src="" alt=""> -->
+
+      </section>
+    </section>
+  </div>
+
+  <!-- 팝업 오버레이 -->
+  <div class=" popup-overlay" id="popup-overlay">
+    <img src="" alt="Popup Image" class="popup-image" id="popup-image">
+  </div>
+
+  <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js?r=v3.12.0'></script>
+  <script src='https://assets.codepen.io/16327/ScrollTrigger.min.js?r=v3.12.0'></script>
+  <script src='https://assets.codepen.io/16327/ScrollSmoother.min.js'></script>
+  <script id="rendered-js" type="module">
+    let skewSetter = gsap.quickTo("img", "skewY"), // fast
+      clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
+
+    ScrollSmoother.create({
+      wrapper: "#wrapper",
+      content: "#content",
+      smooth: 2,
+      speed: 3,
+      effects: true,
+      onUpdate: self => skewSetter(clamp(self.getVelocity() / -50)),
+      onStop: () => skewSetter(0)
+    });
+
+    // 이미지 클릭 시 팝업 열기
+    const images = document.querySelectorAll('.images img');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const popupImage = document.getElementById('popup-image');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        popupImage.src = img.src;
+        popupOverlay.classList.add('active');
+      });
+    });
+
+    // 팝업 이미지 클릭 시 팝업 닫기
+    popupImage.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+    });
+
+    // 💚 This just adds the GSAP link to this pen, don't copy this bit
+    import { GSAPInfoBar } from "./gsapInfoBar.js";
+    new GSAPInfoBar({ link: "./index.html", target: "_self" });
+    // 💚 Happy tweening!
+    //# sourceURL=pen.js
+  </script>
+</body>
+
+</html>

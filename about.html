@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1021 - About</title>
+  <script src="https://kit.fontawesome.com/c76f6c2692.js" ; crossorigin="anonymous"></script>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap");
+
+    @font-face {
+      font-family: "wild_worldbold";
+      src: url("https://assets.codepen.io/756881/wild_world-webfont.woff2") format("woff2"), url("https://assets.codepen.io/756881/wild_world-webfont.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --fluid-min-width: 320;
+      --fluid-max-width: 1140;
+      --fluid-screen: 100vw;
+      --fluid-bp: calc((var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) / (var(--fluid-max-width) - var(--fluid-min-width)));
+    }
+
+    @media screen and (min-width: 1140px) {
+      :root {
+        --fluid-screen: calc(var(--fluid-max-width) * 1px);
+      }
+    }
+
+    :root {
+      --f-0-min: 18;
+      --f-0-max: 20;
+      --step-0: calc(((var(--f-0-min) / 16) * 1rem) + (var(--f-0-max) - var(--f-0-min)) * var(--fluid-bp));
+      --f-1-min: 20;
+      --f-1-max: 24;
+      --step-1: calc(((var(--f-1-min) / 16) * 1rem) + (var(--f-1-max) - var(--f-1-min)) * var(--fluid-bp));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1f2029;
+      font-family: "Open Sans", sans-serif;
+      color: white;
+      overscroll-behavior: none;
+      margin: 0;
+      padding: 0;
+      font-weight: 300;
+      overflow-x: hidden;
+      font-size: var(--step-0);
+    }
+
+    section {
+      min-height: 100vh;
+    }
+
+    p {
+      line-height: 1.35;
+    }
+
+    #content {
+      padding: 0 0.75rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 0.5rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin: 0;
+    }
+
+    /* .flow--lg>*+* {
+      margin-top: 2em;
+    } */
+
+    .flow>*+* {
+      margin-top: 1em;
+    }
+
+    .title {
+      text-align: center;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 50vh;
+    }
+
+    .title p {
+      margin-top: 2rem;
+    }
+
+    #content {
+      overflow: visible;
+      width: 100%;
+    }
+
+    .heading {
+      position: absolute;
+      top: 50vh;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+
+    h1 {
+      font-size: clamp(12px, 7vw, 80px);
+      text-align: center;
+      line-height: 0.67;
+      /* margin: 0 auto; */
+      font-family: "wild_worldbold";
+    }
+
+    h1 .eyebrow {
+      font-family: "Open sans", sans-serif;
+      font-size: clamp(12px, 3vw, 40px);
+      font-weight: 400;
+    }
+
+    .heading p {
+      font-family: "wild_worldbold";
+      font-size: 15.5vw;
+      font-size: clamp(12px, 15.5vw, 250px);
+      text-align: center;
+      line-height: 0.67;
+      margin: 0;
+      text-align: center;
+      color: #1f2029;
+      -webkit-text-stroke-width: 1.5px;
+      -webkit-text-stroke-color: white;
+      z-index: -10;
+    }
+
+    .intro,
+    h2,
+    h3 {
+      font-size: var(--step-1);
+      font-weight: 500;
+    }
+
+    .text-container {
+      position: relative;
+    }
+
+    .text-container p {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      color: transparent;
+    }
+
+    .text-container p:first-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      color: white;
+    }
+
+    .image-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-column-gap: 0.2rem;
+      grid-row-gap: 0.2rem;
+      width: 70vw;
+      margin: 0 auto;
+      padding-top: 40vh;
+      z-index: -1;
+    }
+
+    .image-grid .image_cont {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+    }
+
+    .image-grid img {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 150%;
+      object-fit: cover;
+    }
+
+    .image-grid .image_cont:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .image-grid .image_cont:nth-child(2) {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .image-grid .image_cont:nth-child(3) {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .parallax-images {
+      margin-top: 10vh;
+      padding: 10rem 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 1rem;
+      grid-row-gap: 20vh;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .parallax-images .image_cont {
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    .parallax-images img {
+      position: absolute;
+      bottom: 0;
+      margin: 0 auto;
+      height: 140%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .parallax-images .parallax-text {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .parallax-images .parallax-text p {
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .parallax-images .parallax-text .icon-b {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .parallax-images .parallax-text .icon-b i {
+      color: white;
+      padding: 0.4rem;
+    }
+
+    .parallax-images .parallax-text .icon-b a:hover i {
+      opacity: 0.5;
+    }
+
+
+    .parallax-images .image_cont:nth-child(2) {
+      grid-column: 1/span 1;
+      grid-row: 1;
+      width: 100%;
+    }
+
+    .parallax-images .image_cont:nth-child(3) {
+      grid-column: 2/span 1;
+      grid-row: 2;
+    }
+
+    .spacer {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stagger {
+      font-size: 8vw;
+    }
+
+    .bars {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 4rem;
+    }
+
+    .bars .bars-text {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .bars .bars-cont {
+      flex: 1 1 500px;
+      display: flex;
+      width: 100%;
+      height: 60vh;
+      align-items: flex-end;
+    }
+
+    .bars .bar {
+      border-radius: 10px;
+      margin: 2vw;
+      text-align: center;
+      flex: 1 0 auto;
+      font-size: var(--step-0);
+      justify-self: flex-end;
+      font-family: "wild_worldbold";
+      font-size: clamp(16px, 3vw, 36px);
+    }
+
+    .content {
+      border-left: solid 1px white;
+      padding: 0.5rem 2rem;
+    }
+
+    .staggered {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      column-gap: 4rem;
+    }
+
+    .staggered h3 {
+      font-family: "wild_worldbold";
+      font-size: clamp(16px, 6vw, 80px);
+      letter-spacing: 0.03em;
+    }
+
+    .staggered_text {
+      flex: 1 1 300px;
+    }
+
+    .staggered_text .content h5 {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .staggered_text .content p {
+      font-size: 1.0rem;
+      margin-bottom: 5rem;
+    }
+
+    .staggered_text .content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .staggered_demo {
+      flex: 1 1 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax-slab {
+      position: relative;
+      height: 500px;
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+    }
+
+    .parallax-slab img {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 180%;
+      object-fit: cover;
+    }
+
+    .v-center {
+      display: flex;
+      align-items: center;
+    }
+
+    .spacer {
+      height: 10vh;
+    }
+  </style>
+
+  <script>
+    window.console = window.console || function (t) {};
+  </script>
+</head>
+
+<body translate="no">
+  <div id="wrapper">
+    <section id="content">
+      <!--  smooth scrolling biz goes in here -->
+      <div class="heading" aria-hidden="true">
+        <p>about</p>
+        <div class="text-container">
+          <p>1021</p>
+          <p data-speed="0.95">1021</p>
+          <p data-speed="0.9">1021</p>
+          <p data-speed="0.85">1021</p>
+          <p data-speed="0.8">1021</p>
+          <p data-speed="0.75">1021</p>
+          <p data-speed="0.7">1021</p>
+        </div>
+      </div>
+
+      <section class="image-grid container">
+        <div class="image_cont" data-speed="1">
+          <img data-speed="auto" src="./about_img/IMG_0722.jpg" alt="">
+        </div>
+        <div class="image_cont" data-speed="1.7">
+          <img data-speed="auto" src="./about_img/IMG_4024.jpg" alt="">
+        </div>
+        <div class="image_cont" data-speed="1.5">
+          <img data-speed="auto" src="./about_img/IMG_3728.jpg" alt="">
+        </div>
+      </section>
+
+      <section class="title container flow--lg">
+        <p>A designer who strives to reflect the value of the</p>
+        <h1>service in the UI</h1>
+        <p>by thoughtfully </p>
+        <h1>considering the UX</h1>
+      </section>
+
+      <section class="bars container">
+
+        <!-- <div class="bars-text">
+          <div class="flow content">
+            <h2>Speed Control</h2>
+            <p>Animate elements along at different speeds, slow them down or make them whizz past.</p>
+          </div>
+
+        </div> -->
+
+        <div class="bars-cont">
+          <div class="bar" data-speed="0.8">
+            <img src="./about_img/figma.png" alt="">
+            <p>9</p>
+          </div>
+
+          <div class="bar" data-speed="0.9">
+            <img src="./about_img/htmlcss.png" alt="">
+            <p>9</p>
+          </div>
+
+          <div class="bar" data-speed="1">
+            <img src="./about_img/js.png" alt="">
+            <p>4</p>
+          </div>
+
+          <div class="bar" data-speed="1.1">
+            <img src="./about_img/aips.png" alt="">
+            <p>7</p>
+          </div>
+
+          <div class="bar" data-speed="1.2">
+            <img src="./about_img/blender.png" alt="">
+            <p>4</p>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="v-center">
+        <div class="parallax-slab">
+          <img data-speed="auto" src="./about_img/about_bg.png" alt="">
+        </div>
+      </section>
+
+      <section class="staggered container">
+
+        <div class="staggered_text">
+          <div class="flow content">
+            <h2>에이전시프로 | UIUX디자이너</h2>
+            <h5>2023-현재 | 서울시</h5>
+            <p>에이전시프로 디자인팀에서 보험설계사를 위한 영업관리 솔루션 웹전환 디자인을 했습니다.</p>
+
+            <h2>할리데이비슨 | 마케팅 • 의류영업관리</h2>
+            <h5>2016-2022 | 대전시</h5>
+            <p>할리데이비슨 의류팀에서 고객관리, 마케팅 캠페인 기획, 영업 활동, 재고 및 판매 관리 업무를 담당했습니다.</p>
+
+            <h2>에스팀 | 패션쇼 및 행사 기획(인턴)</h2>
+            <h5>2010.12 - 2011.04 | 서울시</h5>
+            <p>무대구성, 음향장치, 조명, 음악, 영상, 시청각과 비디오를 관리, 예산안을 요청하여
+              적절한 비용 예산 관리를 경험했습니다.</p>
+
+
+          </div>
+
+        </div>
+      </section>
+
+      <section class="staggered container">
+
+        <div class="staggered_demo">
+          <h3 id="split-stagger">stagger...</h3>
+        </div>
+
+      </section>
+
+      <section class="parallax-images container">
+        <div class="parallax-text">
+          <div class="flow content">
+            <h2>UX를 고민하여 UI에 서비스의 가치를 담아내고자 하는 디자이너</h2>
+            <p>
+              저는 디자인에 대한 깊은 애정을 가지고 있으며, 디자이너로서의 길을 끝없이 탐구하고 있습니다. 디자인은 저에게 단순한 스킬 이상의 것이며, 기능적이든 감성적이든 미학적이든, 무언가를 더 나은
+              방향으로 변화시키는 힘을 갖고 있다고 생각합니다. 디자인을 통해 개인의 성장을 이루고 있으며, 그 과정을 공유함으로써 다른 사람들에게 긍정적인 영향을 미치고, 함께 응원하는 환경을 만드는 데
+              기여하고자 합니다.
+            </p>
+            <p>2년간 웹디자이너로 활동하면서 SI 프로젝트에서 B2B와 B2C 웹 및 모바일 디자인을 담당해왔습니다. 다양한 산업의 요구에 맞춰 사용자 친화적인 인터페이스와 경험을 제공하며, 특히
+              UX/UI 디자인에 큰 열정을 가지고 있습니다. 팀워크와 소통이 강점이며, 최신 디자인 트렌드를 반영한 창의적인 웹사이트 제작에도 관심이 많아, 현재 3D 작업물과 애니메이션 요소를 배우고
+              있습니다.
+            </p>
+
+            <div class="icon-b">
+              <a target="_blank" href="https://github.com/1021xx"><i class="fa-brands fa-github"></i></a>
+              <a target="_blank" href="mailto:xxokee@gmail.com?subject=김재원 1021. 포트폴리오">
+                <i class="fa-brands fa-google"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="image_cont">
+          <img data-speed="auto" src="./about_img/IMG_4279.JPG" alt="">
+        </div>
+        <div class="image_cont">
+          <img data-speed="auto" src="https://assets.codepen.io/756881/neon2.jpg" alt="">
+        </div>
+      </section>
+
+
+      <section class="spacer"></section>
+    </section>
+  </div>
+
+  <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js?r=v3.11.3'></script>
+  <script src='https://assets.codepen.io/16327/ScrollTrigger.min.js'></script>
+  <script src='https://assets.codepen.io/16327/ScrollSmoother.min.js?v=94387867'></script>
+  <script src='https://assets.codepen.io/16327/SplitText3.min.js'></script>
+  <script id="rendered-js" type="module">
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
+
+// create the smooth scroller FIRST!
+const smoother = ScrollSmoother.create({
+  wrapper: "#wrapper",
+  content: "#content",
+  smooth: 1,
+  normalizeScroll: true, // prevents address bar from showing/hiding on most devices, solves various other browser inconsistencies
+  ignoreMobileResize: true, // skips ScrollTrigger.refresh() on mobile resizes from address bar showing/hiding
+  effects: true,
+  preventDefault: true });
+
+
+gsap.set(".heading", {
+  yPercent: -150,
+  opacity: 1 });
+
+
+let tl = gsap.timeline();
+let mySplitText = new SplitText("#split-stagger", { type: "words,chars" });
+let chars = mySplitText.chars;
+
+chars.forEach((char, i) => {
+  smoother.effects(char, { speed: 1, lag: (i + 1) * 0.1 });
+});
+
+// 💚 This just adds the GSAP link to this pen, don't copy this bit
+import { GSAPInfoBar } from "./gsapInfoBar.js";
+new GSAPInfoBar({ link: "./index.html", target: "_self" });
+// 💚 Happy tweening!
+//# sourceURL=pen.js
+    </script>
+
+
+</body>
+
+</html>

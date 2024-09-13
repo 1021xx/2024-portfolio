@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1021</title>
+
+  <link rel="canonical" href="https://codepen.io/creme/pen/RwbrOxm">
+  <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+      font-size: 18px;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-wrap {
+      position: relative;
+    }
+
+    .menu {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu:hover li a {
+      opacity: 0.2;
+    }
+
+    .menu li {
+      position: relative;
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu li:hover a {
+      color: crimson;
+      opacity: 1;
+    }
+
+    .menu li:hover span.slogan {
+      opacity: 1;
+    }
+
+    .menu li.active a {
+      color: crimson;
+    }
+
+    .menu li.active span.slogan {
+      color: #4a4a4a;
+      opacity: 1;
+    }
+
+    .menu li a {
+      display: block;
+      padding: 0 2rem 2rem;
+      font-size: 4rem;
+      color: #4a4a4a;
+      text-decoration: none;
+      font-family: "Anton", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .menu li span.slogan {
+      font-family: "Kaushan Script", cursive;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 2rem;
+      color: #fff;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .image-container {
+      opacity: 0;
+      background: #000;
+      position: fixed;
+      width: 600px;
+      transition: opacity 0.8s;
+      pointer-events: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .image-container:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: 56.25%;
+    }
+
+    .image-container.visible {
+      opacity: 1;
+    }
+
+    .image-container .image {
+      opacity: 0;
+      transition: opacity 0.4s;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: center center;
+      object-position: center center;
+    }
+
+    .image-container .image.visible {
+      opacity: 1;
+    }
+
+    .image-container .image>img {
+      vertical-align: middle;
+      width: 100%;
+      max-width: 100%;
+    }
+  </style>
+
+</head>
+
+<body translate="no">
+  <div class="menu-wrap">
+    <ul class="menu"></ul>
+
+    <div class="image-container"></div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
+  <script id="rendered-js">
+    console.clear();
+
+    let sites = [{
+        'title': 'About',
+        'slogan': '1021',
+        'url': './about.html',
+        'image': './img/main_about.png'
+      },
+      {
+        'title': '3D Artwork',
+        'slogan': 'Blender',
+        'url': './3dArtwork.html',
+        'image': './img/main_3d.png'
+      },
+      {
+        'title': 'Work',
+        'slogan': 'UIUX',
+        'url': './work.html',
+        'image': './img/13_canBox_01.png'
+      },
+    ];
+
+
+    const menu = document.querySelectorAll('.menu')[0];
+    const imageContainer = document.querySelectorAll('.image-container')[0];
+
+
+    sites.forEach(site => {
+      let dataId = site.title.toLowerCase().replace(/\s/g, '-').replace(/'/g, '').replace(/"/g, '').replace(/</g,
+        '').replace(/>/g, '');
+
+      const listEl = $(`<li data-id="${dataId}">
+											<a href="${site.url}">${site.title}</a>
+											<span class="slogan">${site.slogan}</span>
+										</li>`);
+
+      const imgEl = $(`<div class="image" data-id="${dataId}">
+									 		<img src="${site.image}" alt="${site.title} image">
+								 	 </div>`);
+
+      $(menu).append(listEl);
+      $(imageContainer).append(imgEl);
+
+      $(listEl).on('mouseover', function () {
+        $('.image-container .image').removeClass('visible');
+        $(this).addClass('hovered');
+        $(imgEl).addClass('visible');
+
+      }).on('mousemove', function (e) {
+        let imgWidth = $(imgEl).outerWidth();
+        let imgHeight = $(imgEl).outerHeight();
+        TweenMax.to(imageContainer, .5, {
+          left: e.clientX - imgWidth / 2,
+          top: e.clientY - imgHeight / 2
+        });
+
+
+      }).on('mouseleave', function () {
+        $(this).removeClass('hovered');
+      });
+    });
+
+
+    $(menu).on('mouseover', function () {
+      $(imageContainer).addClass('visible');
+    }).on('mouseleave', function () {
+      $(imageContainer).removeClass('visible');
+    });
+
+
+    $('.menu li:nth-child(3)').addClass('active');
+    $('a').on('click', function (e) {
+      // e.preventDefault();
+      // 클릭 시 기본 동작을 허용
+    });
+    //# sourceURL=pen.js
+  </script>
+
+
+
+</body>
+
+</html>
