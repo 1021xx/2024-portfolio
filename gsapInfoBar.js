@@ -101,8 +101,3 @@ export class GSAPInfoBar {
     });
   }
 }
-
-// new GSAPInfoBar({
-//   link: "https://gsap.com/docs/v3/Plugins/Draggable/",
-//   position: "top"
-// });

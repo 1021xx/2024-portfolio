@@ -4,9 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>1021 - 3D Artwork</title>
-  <link rel="stylesheet" href="https://use.typekit.net/nyc6jda.css">
 
   <style>
     body {
@@ -191,7 +189,6 @@
     </section>
   </div>
 
-  <!-- 팝업 오버레이 -->
   <div class=" popup-overlay" id="popup-overlay">
     <img src="" alt="Popup Image" class="popup-image" id="popup-image">
   </div>
@@ -213,7 +210,6 @@
       onStop: () => skewSetter(0)
     });
 
-    // 이미지 클릭 시 팝업 열기
     const images = document.querySelectorAll('.images img');
     const popupOverlay = document.getElementById('popup-overlay');
     const popupImage = document.getElementById('popup-image');
@@ -225,16 +221,12 @@
       });
     });
 
-    // 팝업 이미지 클릭 시 팝업 닫기
     popupImage.addEventListener('click', () => {
       popupOverlay.classList.remove('active');
     });
 
-    // 💚 This just adds the GSAP link to this pen, don't copy this bit
     import { GSAPInfoBar } from "./gsapInfoBar.js";
     new GSAPInfoBar({ link: "./index.html", target: "_self" });
-    // 💚 Happy tweening!
-    //# sourceURL=pen.js
   </script>
 </body>
 
