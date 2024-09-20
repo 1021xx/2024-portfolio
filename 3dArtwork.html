@@ -191,26 +191,6 @@
     <img src="" alt="Popup Image" class="popup-image" id="popup-image">
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-  <!-- The following plugin is only available for Club GSAP members.-->
-  <script src="/ScrollSmoother.min.js"></script>
-
-  <script>
-    // use a script tag or an external JS file
-    document.addEventListener("DOMContentLoaded", (event) => {
-      gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
-      // gsap code here!
-    });
-  </script>
-
-
-  <!-- <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js?r=v3.12.0'></script>
-  <script src='https://assets.codepen.io/16327/ScrollTrigger.min.js?r=v3.12.0'></script>
-  <script src='https://assets.codepen.io/16327/ScrollSmoother.min.js'></script>
-   -->
   <script id="rendered-js" type="module">
     let skewSetter = gsap.quickTo("img", "skewY"), // fast
       clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
