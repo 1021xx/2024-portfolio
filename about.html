@@ -549,13 +549,11 @@
   <script src="/SplitText.min.js"></script>
 
   <script id="rendered-js" type="module">
-    // gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
     document.addEventListener("DOMContentLoaded", (event) => {
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText)
       // gsap code here!
     });
 
-// create the smooth scroller FIRST!
 const smoother = ScrollSmoother.create({
   wrapper: "#wrapper",
   content: "#content",
