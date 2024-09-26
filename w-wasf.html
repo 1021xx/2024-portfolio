@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>w-1</title>
+  <title>work - WASF</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -280,10 +280,13 @@
       gap: clamp(0.4rem, 0.3029rem + 0.2589vw, 0.8rem);
     }
 
+    .scoll>div:not(.gztLSA) {
+      padding: clamp(5rem, -4.4667rem + 12.3264vw, 19.2rem) clamp(3rem, -2.5333rem + 7.2049vw, 11.3rem);
+    }
+
     .scoll>div {
       background-color: rgba(0, 0, 0, 0.6);
       width: 100%;
-      padding: clamp(5rem, -4.4667rem + 12.3264vw, 19.2rem) clamp(3rem, -2.5333rem + 7.2049vw, 11.3rem);
       border-radius: 0.4rem;
       inset: -1px 0px 5907.06px;
     }
@@ -291,13 +294,21 @@
     /* 컨텐츠 첫번째  */
     .gztLSA {
       display: block;
-      /* height: calc(100svh - clamp(0.4rem, 0.3029rem + 0.2589vw, 0.8rem) * 2); */
+      height: calc(100svh - clamp(0.4rem, 0.3029rem + 0.2589vw, 0.8rem) * 2);
+    }
+
+    .gztLSA-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .ebnXdn {
       position: relative;
       overflow: hidden;
       border-radius: 0.4rem;
+      width: 100%;
+      height: 100%;
     }
 
     .iFVveJ {
@@ -305,6 +316,7 @@
       border-radius: 0.4rem;
       overflow: hidden;
       width: 100%;
+      height: 100%;
       transform: translateZ(0);
     }
 
@@ -356,8 +368,6 @@
   <div class="wrap">
 
     <div class="fixed">
-
-
       <div class="titleGroup">
         <span class="title">WASF</span>
         <span class="sub-title">인사 계약 업적 수수료 업무지원에 <br> 이르는 GA종합지원시스템</span>
@@ -371,7 +381,7 @@
 
       <div class="titleGroup groupBottom">
         <span class="con-text">
-          서비스의 기능 확장과 다양한 브랜드를 소구할 수 있는 구조로 설계하였습니다. 사용자의 목적과 사용 시점을 고려한 주요 기능을 배치하고 필요한 정보와 기능을 통합적으로 제공
+          서비스의 기능 확장과 다양한 브랜드를 소구할 수 있는 구조로 설계하였습니다. 사용자의 목적과 사용 시점을 고려한 주요 기능을 배치하고 필요한 정보와 기능을 통합적으로 제공합니다.
         </span>
         <!-- <button class="explore">VISIT LIVE SITE<span class="icon-right"></span><span
             class="icon-right after"></span></button> -->
@@ -381,23 +391,45 @@
     <div class="scoll">
       <div class="gztLSA">
         <div class="index-style__WorkImages2UpItem-sc-5604871c-6 iFVveJ">
-          <div class="ebnXdn"><img src="./work_img/w-1_img/s.png" />
+          <div class="ebnXdn">
+            <img class="gztLSA-img" src="./work_img/wasf.png" />
           </div>
         </div>
+      </div>
 
-      </div>
       <div>
         <div class="index-style__WorkImages2UpItem-sc-5604871c-6 iFVveJ">
-          <div class="ebnXdn"><img src="./work_img/w-1_img/incar.png" />
+          <div class="ebnXdn">
+            <video autoplay muted loop>
+              <source src="./work_img/w-1_img/incar.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
+
       <div>
         <div class="index-style__WorkImages2UpItem-sc-5604871c-6 iFVveJ">
-          <div class="ebnXdn"><img src="./work_img/w-1_img/ad.png" />
+          <div class="ebnXdn">
+            <video autoplay muted loop>
+              <source src="./work_img/w-1_img/s.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
+
+      <div>
+        <div class="index-style__WorkImages2UpItem-sc-5604871c-6 iFVveJ">
+          <div class="ebnXdn">
+            <video autoplay muted loop>
+              <source src="./work_img/w-1_img/ezad.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+
       <div>
         <div class="index-style__WorkImages2UpItem-sc-5604871c-6 iFVveJ">
           <div class="ebnXdn">
@@ -408,6 +440,7 @@
           </div>
         </div>
       </div>
+
     </div>
 
   </div>
