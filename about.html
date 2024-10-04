@@ -490,7 +490,7 @@
 
       <section class="v-center">
         <div class="parallax-slab">
-          <img data-speed="auto" src="./about_img/IMG_0807.jpg" alt="">
+          <img data-speed="auto" src="./about_img/IMG_6908.jpg" alt="">
         </div>
       </section>
 
@@ -546,15 +546,9 @@
         </div>
 
         <div class="image_cont">
-          <img data-speed="auto" src="./about_img/about.jpg" alt="">
-        </div>
-        <div class="image_cont">
-          <img data-speed="auto" src="https://assets.codepen.io/756881/neon2.jpg" alt="">
+          <img data-speed="auto" src="./about_img/IMG_4279.JPG" alt="">
         </div>
       </section>
-
-
-      <section class="spacer"></section>
     </section>
   </div>
 
@@ -574,8 +568,8 @@ const smoother = ScrollSmoother.create({
   wrapper: "#wrapper",
   content: "#content",
   smooth: 1,
-  normalizeScroll: true, // prevents address bar from showing/hiding on most devices, solves various other browser inconsistencies
-  ignoreMobileResize: true, // skips ScrollTrigger.refresh() on mobile resizes from address bar showing/hiding
+  normalizeScroll: true,
+  ignoreMobileResize: true,
   effects: true,
   preventDefault: true });
 
@@ -593,11 +587,8 @@ chars.forEach((char, i) => {
   smoother.effects(char, { speed: 1, lag: (i + 1) * 0.1 });
 });
 
-// 💚 This just adds the GSAP link to this pen, don't copy this bit
 import { GSAPInfoBar } from "./gsapInfoBar.js";
 new GSAPInfoBar({ link: "./index.html", target: "_self" });
-// 💚 Happy tweening!
-//# sourceURL=pen.js
     </script>
 
 
